@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Arch-Le | Architectural Learning</title>
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body>
+  <!-- Header -->
+  <header class="app-header">
+    <h1>Arch-Le</h1>
+  </header>
+
+  <!-- Main Content -->
+  <main class="app-main">
+    <section class="hero">
+      <!-- Mascot -->
+      <img src="Welcoming pose.png" alt="Arch-Le Mascot" class="mascot" />
+
+      <h2>Learn Architecture Anywhere</h2>
+      <p>Interactive lessons, quizzes, and tools designed for future architects.</p>
+
+      <!-- Start Button -->
+      <button class="cta-btn" onclick="location.href='../1_Topics_Page/index.html'">
+        Get Started
+      </button>
+
+      <!-- Level Display -->
+      <div id="user-level" style="margin-top: 20px; font-weight: bold; font-size: 1.2em;">
+        <!-- JS will inject level here -->
+      </div>
+    </section>
+  </main>
+
+  <!-- Bottom Navigation -->
+  <nav class="bottom-nav">
+    <a href="#" class="nav-item active">
+      <span>🏠</span>
+      <p>Home</p>
+    </a>
+    <a href="../1_Topics_Page/index.html" class="nav-item">
+      <span>📚</span>
+      <p>Learn</p>
+    </a>
+    <a href="#" class="nav-item">
+      <span>📝</span>
+      <p>Quiz</p>
+    </a>
+    <a href="#" class="nav-item">
+      <span>👤</span>
+      <p>Profile</p>
+    </a>
+  </nav>
+
+  <!-- JavaScript at the end of body -->
+  <script src="script.js"></script>
+</body>
+</html>
