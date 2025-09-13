@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Architektur Quiz – Gebäudelehre</title>
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body>
+  <div class="container">
+    <h1>Gebäudelehre</h1>
+
+    <!-- XP and Level Display -->
+    <div id="xp-level-display">
+      Level: 1 | XP: 0 / 100
+    </div>
+
+    <!-- XP Progress Bar -->
+    <div id="xp-progress-container">
+      <div id="xp-progress-bar"></div>
+    </div>
+
+    <!-- XP Feedback -->
+    <div id="xp-feedback">+20 XP!</div>
+
+    <div id="life-container">
+      <span class="pen">✏️</span>
+      <span class="pen">✏️</span>
+      <span class="pen">✏️</span>
+    </div>
+
+    <div class="game">
+      <div class="images">
+        <img src="barcelona.jpg" alt="Barcelona Pavillon" class="draggable" draggable="true" id="barcelona" />
+        <img src="farnsworth.jpg" alt="Farnsworth House" class="draggable" draggable="true" id="farnsworth" />
+        <img src="scjohnson.jpg" alt="SC Johnson" class="draggable" draggable="true" id="scjohnson" />
+        <img src="fallingwater.jpg" alt="Fallingwater" class="draggable" draggable="true" id="fallingwater" />
+      </div>
+
+      <div class="dropzones">
+        <div class="dropzone" data-answer="barcelona">Barcelona-Pavillon</div>
+        <div class="dropzone" data-answer="fallingwater">Fallingwater</div>
+        <div class="dropzone" data-answer="farnsworth">Farnsworth House</div>
+        <div class="dropzone" data-answer="scjohnson">SC Johnson</div>
+      </div>
+    </div>
+
+    <button onclick="checkResults()">Check Results</button>
+    <button id="nextQuestionBtn" type="button" disabled>Next Random Question</button>
+  </div>
+
+  <!-- Hedgehog Animation -->
+  <img src="hedgehog.png" id="hedgehog-celebration" alt="Smiling Hedgehog" />
+
+  <script src="script.js"></script>
+
+  <nav class="bottom-nav">
+    <a href="../0_Homepage_Basic/index.html" class="nav-item">
+      <span>🏠</span>
+      <p>Home</p>
+    </a>
+    <a href="../1_Topics_Page/index.html" class="nav-item">
+      <span>📚</span>
+      <p>Learn</p>
+    </a>
+    <a href="#" class="nav-item active">
+      <span>📝</span>
+      <p>Quiz</p>
+    </a>
+    <a href="#" class="nav-item">
+      <span>👤</span>
+      <p>Profile</p>
+    </a>
+  </nav>
+</body>
+</html>
