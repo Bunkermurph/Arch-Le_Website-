@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Wähle ein Thema</title>
+  <link rel="stylesheet" href="style.css?v=3">
+</head>
+<body>
+  <header class="app-header">
+    <h1>Wähle ein Thema</h1>
+  </header>
+
+  <main class="app-main topics-grid">
+    <!-- Baugeschichte -->
+    <div class="topic-card" onclick="location.href='../1.1_Auswahl_Bauepochen/themen-auswahl.html'">
+      <h2>Baugeschichte</h2>
+      <img src="Baugeschichte.png" alt="Baugeschichte Mascot" class="topic-mascot">
+    </div>
+
+    <!-- Baustoffkunde (disabled) -->
+    <div class="topic-card disabled">
+      <h2>Baustoffkunde</h2>
+      <img src="Baustoffkunde.png" alt="Baustoffkunde Mascot" class="topic-mascot">
+      <span class="soon">(bald verfügbar)</span>
+    </div>
+
+    <!-- Bauweise (disabled) -->
+    <div class="topic-card disabled">
+      <h2>Bauweise</h2>
+      <img src="Bauweise.png" alt="Bauweise Mascot" class="topic-mascot">
+      <span class="soon">(bald verfügbar)</span>
+    </div>
+
+    <!-- Placeholder 1 -->
+    <div class="topic-card disabled">
+      <span class="soon">(bald verfügbar)</span>
+    </div>
+
+    <!-- Placeholder 2 -->
+    <div class="topic-card disabled">
+      <span class="soon">(bald verfügbar)</span>
+    </div>
+
+     <!-- Placeholder 3 -->
+    <div class="topic-card disabled">
+      <span class="soon">(bald verfügbar)</span>
+    </div>
+  </main>
+
+  <nav class="bottom-nav">
+    <a href="../0_Homepage_Basic/index.html" class="nav-item">
+      <span>🏠</span>
+      <p>Home</p>
+    </a>
+    <a href="../1_Topics_Page/index.html" class="nav-item active">
+      <span>📚</span>
+      <p>Learn</p>
+    </a>
+    <a href="#" class="nav-item">
+      <span>📝</span>
+      <p>Quiz</p>
+    </a>
+    <a href="#" class="nav-item">
+      <span>👤</span>
+      <p>Profile</p>
+    </a>
+  </nav>
+</body>
+</html>
