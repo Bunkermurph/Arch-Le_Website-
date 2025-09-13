@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Architektur Quiz – Antike (Frage 10)</title>
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body>
+  <div class="container" id="quiz-screen">
+    <h1>ANTIKE</h1>
+
+    <div id="xp-level-display">Level: 1 | XP: 0 / 100</div>
+    <div id="xp-progress-container"><div id="xp-progress-bar"></div></div>
+    <div id="life-container"></div>
+    <div id="xp-feedback">+10 XP!</div>
+
+    <p class="question">Ordnen Sie die Stile nach <b>Entstehung</b> (früh → spät).</p>
+
+    <div class="order-grid">
+      <div class="order-card" data-position="1">
+        <label>1.</label>
+        <select>
+          <option value="" selected>— Wähle —</option>
+          <option>Antike</option><option>Romanik</option><option>Gotik</option><option>Renaissance</option>
+        </select>
+      </div>
+      <div class="order-card" data-position="2">
+        <label>2.</label>
+        <select>
+          <option value="" selected>— Wähle —</option>
+          <option>Antike</option><option>Romanik</option><option>Gotik</option><option>Renaissance</option>
+        </select>
+      </div>
+      <div class="order-card" data-position="3">
+        <label>3.</label>
+        <select>
+          <option value="" selected>— Wähle —</option>
+          <option>Antike</option><option>Romanik</option><option>Gotik</option><option>Renaissance</option>
+        </select>
+      </div>
+      <div class="order-card" data-position="4">
+        <label>4.</label>
+        <select>
+          <option value="" selected>— Wähle —</option>
+          <option>Antike</option><option>Romanik</option><option>Gotik</option><option>Renaissance</option>
+        </select>
+      </div>
+    </div>
+
+    <button id="checkOrderBtn" type="button">Antwort prüfen</button>
+    <button id="nextQuestionBtn" type="button" disabled>Next Random Question</button>
+  </div>
+
+  <nav class="bottom-nav">
+    <a href="../0_Homepage_Basic/index.html" class="nav-item"><span>🏠</span><p>Home</p></a>
+    <a href="../1_Topics_Page/index.html" class="nav-item"><span>📚</span><p>Learn</p></a>
+    <a href="#" class="nav-item active"><span>📝</span><p>Quiz</p></a>
+    <a href="#" class="nav-item"><span>👤</span><p>Profile</p></a>
+  </nav>
+
+  <img src="hedgehog.png" id="hedgehog-celebration" alt="Igel" />
+
+  <script defer src="script.js"></script>
+  <script>
+    // Page-specific handler uses shared awardXP/loseLife
+    document.getElementById("checkOrderBtn")?.addEventListener("click", () => {
+      const expected = ["Antike","Romanik","Gotik","Renaissance"];
+      const cards = [...document.querySelectorAll(".order-card")];
+      let allCorrect = true;
+
+      cards.forEach((c, i) => {
+        c.classList.remove("correct-border","wrong-border");
+        const v = c.querySelector("select")?.value || "";
+        if (v === expected[i]) c.classList.add("correct-border");
+        else { c.classList.add("wrong-border"); allCorrect = false; }
+      });
+
+      if (allCorrect) {
+        awardXP?.(10);
+        document.querySelectorAll(".order-card select").forEach(s => s.disabled = true);
+        document.getElementById("checkOrderBtn").disabled = true;
+      } else {
+        loseLife?.();
+      }
+
+      const nextBtn = document.getElementById("nextQuestionBtn");
+      if (nextBtn) nextBtn.disabled = false;
+    });
+  </script>
+</body>
+</html>
