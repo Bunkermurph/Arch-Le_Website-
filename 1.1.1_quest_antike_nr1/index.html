@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Architektur Quiz – Antike</title>
+  <link rel="stylesheet" href="style.css?v=5" />
+</head>
+<body>
+  <!-- Header -->
+  <header class="app-header">
+    <h1>Quiz</h1>
+  </header>
+
+  <!-- Main -->
+  <main class="app-main">
+    <div class="question-card" id="quiz-screen">
+      <h2 class="q-title">ANTIKE</h2>
+
+      <!-- Level / XP -->
+      <div class="q-meta">
+        <div id="xp-level-display" class="q-level">Level: 1 | XP: 0 / 100</div>
+        <div id="life-container" class="q-lives"></div>
+
+        <div id="xp-progress-container" class="q-progress">
+          <div id="xp-progress-bar" class="q-progress__bar" style="width:0%"></div>
+        </div>
+      </div>
+
+      <!-- XP toast -->
+      <div id="xp-feedback" class="xp-toast">+10 XP!</div>
+
+      <!-- Image + question -->
+      <img src="column.png" alt="Antike Säule" class="quiz-image" />
+      <p class="question-text">Wie heißt die oben dargestellte Stütze?</p>
+
+      <!-- Options -->
+      <div class="answers options">
+        <button onclick="checkAnswer('korinthisch', this)">korinthisch</button>
+        <button onclick="checkAnswer('dorisch', this)">dorisch</button>
+        <button onclick="checkAnswer('ionisch', this)">ionisch</button>
+      </div>
+
+      <button id="nextQuestionBtn" type="button" class="cta-btn" disabled>
+        Nächste zufällige Frage
+      </button>
+    </div>
+  </main>
+
+  <!-- Bottom Navigation -->
+  <nav class="bottom-nav">
+    <a href="../0_Homepage_Basic/index.html" class="nav-item">
+      <span>🏠</span><p>Home</p>
+    </a>
+    <a href="../1_Topics_Page/index.html" class="nav-item">
+      <span>📚</span><p>Learn</p>
+    </a>
+    <a href="#" class="nav-item active">
+      <span>📝</span><p>Quiz</p>
+    </a>
+    <a href="#" class="nav-item">
+      <span>👤</span><p>Profile</p>
+    </a>
+  </nav>
+
+  <!-- Celebrations image (unchanged) -->
+  <img src="hedgehog.png" id="hedgehog-celebration" style="
+    position: fixed; bottom: -200px; left: 50%;
+    transform: translateX(-50%); width: 150px;
+    transition: bottom 0.8s ease; z-index: 1001;" alt="Celebrating Hedgehog" />
+
+  <script src="script.js"></script>
+</body>
+</html>

@@ -1,0 +1,148 @@
+/* Palette */
+:root{
+  --cream:#F6E7CF;
+  --cream-2:#F3E0BE;
+  --brown-900:#4E3A2A;
+  --brown-700:#6E523D;
+  --brown-500:#8B6A4F;
+  --brown-300:#D2B998;
+  --accent:#E09A2D;
+  --accent-hover:#C9821E;
+  --ok:#3BAA5C;
+  --bad:#C5544E;
+  --white:#FFFFFF;
+
+  --bar-h:64px;
+  --radius:12px;
+  --shadow:0 4px 12px rgba(78,58,42,.12);
+}
+
+/* Reset / Base */
+*{margin:0;padding:0;box-sizing:border-box;}
+body{
+  font-family:Arial, sans-serif;
+  font-size:16px;
+  background:var(--cream);
+  color:var(--brown-900);
+  min-height:100vh;
+  display:flex;
+  flex-direction:column;
+
+  background-image:url('../0_Homepage_Basic/subtle-grain.png');
+  background-size:200px 200px;
+}
+img{max-width:100%;display:block}
+
+/* Header */
+.app-header{
+  height:var(--bar-h);
+  display:flex; align-items:center; justify-content:center;
+  background:var(--brown-900); color:var(--white);
+}
+.app-header h1{font-size:1.5rem; line-height:1}
+
+/* Main */
+.app-main{
+  flex:1;
+  padding:2rem 1rem calc(var(--bar-h) + 1rem);
+  display:flex; align-items:flex-start; justify-content:center;
+}
+
+/* Question card */
+.question-card{
+  width:100%;
+  max-width:720px;
+  background:var(--cream-2);
+  border:1px solid var(--brown-300);
+  border-radius:var(--radius);
+  box-shadow:var(--shadow);
+  padding:1.5rem;
+  text-align:center;
+  display:grid; gap:1rem;
+}
+.q-title{ font-size:1.2rem; letter-spacing:.02em; }
+.q-meta{ display:grid; gap:.6rem; }
+.q-level{ color:var(--brown-700); font-weight:bold; }
+
+/* Lives */
+.q-lives{ font-size:24px; }
+
+/* Pens (life indicators) */
+.pen.lost{
+  opacity:0.35;
+  filter:grayscale(100%);
+}
+
+/* Progress */
+.q-progress{
+  width:100%; height:12px; border-radius:999px;
+  background:rgba(0,0,0,.06); overflow:hidden;
+  border:1px solid var(--brown-300);
+}
+.q-progress__bar{
+  height:100%; width:0%;
+  background:var(--accent); transition:width .4s ease;
+}
+
+/* Toast */
+.xp-toast{
+  position:fixed; top:20px; right:20px;
+  background:var(--ok); color:var(--white);
+  padding:10px 14px; border-radius:8px;
+  box-shadow:0 2px 10px rgba(0,0,0,.2);
+  font-weight:bold; display:none; z-index:1000;
+}
+
+/* Image + question */
+.quiz-image{ width:100%; max-height:260px; object-fit:contain; }
+.question-text{ font-size:1.2rem; color:var(--brown-900); }
+
+/* Answers */
+.answers{ display:grid; gap:.8rem; }
+.options button{
+  width:100%;
+  padding:.8rem 1rem;
+  background:var(--white);
+  color:var(--brown-900);
+  border:2px solid var(--brown-300);
+  border-radius:8px;
+  font-size:1rem;
+  cursor:pointer;
+  transition:background .2s, color .2s, border-color .2s, transform .05s;
+}
+.options button:hover{
+  background:var(--accent); color:var(--white); border-color:var(--accent-hover);
+}
+.options button:active{ transform:scale(0.99); }
+.options button:disabled{ opacity:.6; cursor:not-allowed; }
+
+/* Result states (mapped to your JS classes) */
+.button-green{ background:var(--ok) !important; color:var(--white) !important; border-color:var(--ok) !important; }
+.button-red{ background:var(--bad) !important; color:var(--white) !important; border-color:var(--bad) !important; }
+
+/* Next button consistent with theme */
+.cta-btn{
+  background:var(--accent); color:var(--white);
+  border:1px solid transparent; border-radius:8px;
+  padding:.8rem 1.2rem; font-size:1rem; transition:background .2s;
+}
+.cta-btn:disabled{ opacity:.6; cursor:not-allowed; }
+.cta-btn:hover:not(:disabled){ background:var(--accent-hover); }
+
+/* Bottom Navigation */
+.bottom-nav{
+  position:fixed; left:0; right:0; bottom:0;
+  height:var(--bar-h);
+  background:var(--cream-2);
+  display:flex; align-items:center; justify-content:space-around;
+  border-top:1px solid var(--brown-300);
+}
+.nav-item{ flex:1; text-align:center; color:var(--brown-500); font-size:.8rem; text-decoration:none; }
+.nav-item span{ display:block; font-size:1.3rem; line-height:1.2; margin-bottom:.15rem; }
+.nav-item.active{ color:var(--brown-900); }
+
+/* Small devices tuning */
+@media (max-width:380px){
+  .question-card{ padding:1.1rem; }
+  .question-text{ font-size:1.05rem; }
+}
