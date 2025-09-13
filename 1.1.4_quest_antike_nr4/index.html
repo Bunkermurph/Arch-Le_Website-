@@ -1,0 +1,193 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Architektur Quiz – Antike (Frage 4)</title>
+
+  <!-- Globale Styles (Pfad ggf. anpassen) -->
+  <link rel="stylesheet" href="style.css" />
+
+  <!-- Minimaler CSS-Zusatz nur für diese Matching-Seite -->
+  <style>
+    .match-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(140px, 1fr));
+      gap: 16px;
+      justify-items: center;
+      margin-bottom: 20px;
+    }
+    .match-card {
+      width: 100%;
+      background: #0e0e0e;
+      padding: 10px;
+      border-radius: 10px;
+      border: 3px solid transparent;
+    }
+    .match-card img.quiz-image {
+      width: 100%;
+      max-height: 180px;
+      object-fit: contain;
+      margin-bottom: 10px;
+    }
+    .match-card select.match-select {
+      width: 100%;
+      padding: 8px 10px;
+      border-radius: 8px;
+      border: 1px solid #333;
+      background: #1a1a1a;
+      color: #fff;
+    }
+    .correct-border { border-color: #28a745 !important; }
+    .wrong-border   { border-color: #dc3545 !important; }
+
+    #checkMatchingBtn {
+      background: #444;
+      margin-top: 5px;
+      margin-bottom: 10px;
+      padding: 10px 18px;
+      font-size: 16px;
+      border-radius: 8px;
+      border: none;
+      cursor: pointer;
+      transition: background-color 0.3s ease;
+    }
+    #checkMatchingBtn:hover { background: #555; }
+  </style>
+</head>
+<body>
+  <div class="container" id="quiz-screen">
+    <h1>ANTIKE</h1>
+
+    <div id="xp-level-display" style="margin-bottom:10px; font-weight:bold; font-size:1.1em;">
+      Level: 1 | XP: 0 / 100
+    </div>
+    <div id="xp-progress-container" style="width:100%; background-color:#ddd; border-radius:5px; height:20px; margin-bottom:20px;">
+      <div id="xp-progress-bar" style="height:100%; width:0%; background-color:#4caf50; border-radius:5px; transition: width 0.5s ease;"></div>
+    </div>
+
+    <div id="life-container"></div>
+
+    <!-- XP feedback message -->
+    <div id="xp-feedback" style="position:fixed; top:20px; right:20px; background:#4caf50; color:white; padding:10px 15px; border-radius:5px; box-shadow:0 2px 10px rgba(0,0,0,0.2); font-weight:bold; display:none; z-index:1000;">
+      +10 XP!
+    </div>
+
+    <p class="question">Ordne den Säulenordnungen die <b>richtigen Bilder</b> zu.</p>
+
+    <!-- 🔽 Matching: Bild → Säulenordnung -->
+    <div class="match-grid">
+      <!-- Dorisch -->
+      <div class="match-card" data-correct="dorisch">
+        <img src="doric.jpg" alt="Dorische Säule" class="quiz-image selectable" />
+        <select class="match-select">
+          <option value="" selected>— Wähle aus —</option>
+          <option value="dorisch">Dorisch</option>
+          <option value="ionisch">Ionisch</option>
+          <option value="korinthisch">Korinthisch</option>
+        </select>
+      </div>
+
+      <!-- Ionisch -->
+      <div class="match-card" data-correct="ionisch">
+        <img src="ionic.jpg" alt="Ionische Säule" class="quiz-image selectable" />
+        <select class="match-select">
+          <option value="" selected>— Wähle aus —</option>
+          <option value="dorisch">Dorisch</option>
+          <option value="ionisch">Ionisch</option>
+          <option value="korinthisch">Korinthisch</option>
+        </select>
+      </div>
+
+      <!-- Korinthisch -->
+      <div class="match-card" data-correct="korinthisch">
+        <img src="corinthian.jpg" alt="Korinthische Säule" class="quiz-image selectable" />
+        <select class="match-select">
+          <option value="" selected>— Wähle aus —</option>
+          <option value="dorisch">Dorisch</option>
+          <option value="ionisch">Ionisch</option>
+          <option value="korinthisch">Korinthisch</option>
+        </select>
+      </div>
+    </div>
+
+    <button id="checkMatchingBtn" type="button">Antwort prüfen</button>
+    <button id="nextQuestionBtn" type="button" disabled>Next Random Question</button>
+  </div>
+
+  <nav class="bottom-nav">
+    <a href="../0_Homepage_Basic/index.html" class="nav-item">
+      <span>🏠</span>
+      <p>Home</p>
+    </a>
+    <a href="../1_Topics_Page/index.html" class="nav-item">
+      <span>📚</span>
+      <p>Learn</p>
+    </a>
+    <a href="#" class="nav-item active">
+      <span>📝</span>
+      <p>Quiz</p>
+    </a>
+    <a href="#" class="nav-item">
+      <span>👤</span>
+      <p>Profile</p>
+    </a>
+  </nav>
+
+  <!-- animation -->
+  <img src="hedgehog.png" id="hedgehog-celebration" style="position:fixed; bottom:-200px; left:50%; transform:translateX(-50%); width:150px; transition:bottom 0.8s ease; z-index:1001;" alt="Celebrating Hedgehog" />
+
+  <!-- Globales Quiz-Skript (XP/Leben/Navi) -->
+  <script defer src="script.js"></script>
+
+  <!-- Seiten-spezifische Logik für Matching -->
+  <script>
+    document.addEventListener("DOMContentLoaded", () => {
+      const checkBtn = document.getElementById("checkMatchingBtn");
+      const nextBtn  = document.getElementById("nextQuestionBtn");
+      let awarded = false;
+
+      function clearBorders(card) {
+        card.classList.remove("correct-border", "wrong-border");
+      }
+      function lockInputs(lock) {
+        document.querySelectorAll(".match-select").forEach(s => s.disabled = lock);
+        checkBtn.disabled = lock;
+      }
+
+      checkBtn.addEventListener("click", () => {
+        const cards = Array.from(document.querySelectorAll(".match-card"));
+        let allCorrect = true;
+
+        cards.forEach(card => {
+          clearBorders(card);
+          const correct = (card.getAttribute("data-correct") || "").trim();
+          const select  = card.querySelector(".match-select");
+          const value   = (select?.value || "").trim();
+
+          if (value && value === correct) {
+            card.classList.add("correct-border");
+          } else {
+            card.classList.add("wrong-border");
+            allCorrect = false;
+          }
+        });
+
+        if (allCorrect) {
+          if (!awarded && typeof awardXP === "function") {
+            awardXP(10);
+            awarded = true;
+          }
+          lockInputs(true);
+        } else {
+          if (typeof loseLife === "function") {
+            loseLife();
+          }
+        }
+
+        if (nextBtn) nextBtn.disabled = false;
+      });
+    });
+  </script>
+</body>
+</html>
