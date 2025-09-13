@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Architektur Quiz – Antike (Frage 5)</title>
+<link rel="stylesheet" href="style.css" />
+</head>
+<body>
+  <div class="container" id="quiz-screen">
+    <h1>ANTIKE</h1>
+
+    <div id="xp-level-display" style="margin-bottom:10px; font-weight:bold; font-size:1.1em;">Level: 1 | XP: 0 / 100</div>
+    <div id="xp-progress-container" style="width:100%; background-color:#ddd; border-radius:5px; height:20px; margin-bottom:20px;">
+      <div id="xp-progress-bar" style="height:100%; width:0%; background-color:#4caf50; border-radius:5px; transition: width 0.5s ease;"></div>
+    </div>
+    <div id="life-container"></div>
+
+    <div id="xp-feedback" style="position:fixed; top:20px; right:20px; background:#4caf50; color:white; padding:10px 15px; border-radius:5px; display:none; z-index:1000;">+10 XP!</div>
+
+    <p class="question">Wählen Sie die <b>romanische Kirche</b>.</p>
+
+    <div class="image-options">
+      <img src="romanisch.jpg" alt="Romanische Kirche" class="quiz-image selectable" onclick="checkImage5('romanisch', this)" />
+      <img src="gotisch.jpg" alt="Gotische Kirche" class="quiz-image selectable" onclick="checkImage5('gotisch', this)" />
+    </div>
+
+    <button id="nextQuestionBtn" type="button" disabled>Next Random Question</button>
+  </div>
+
+  <nav class="bottom-nav">
+    <a href="../0_Homepage_Basic/index.html" class="nav-item"><span>🏠</span><p>Home</p></a>
+    <a href="../1_Topics_Page/index.html" class="nav-item"><span>📚</span><p>Learn</p></a>
+    <a href="#" class="nav-item active"><span>📝</span><p>Quiz</p></a>
+    <a href="#" class="nav-item"><span>👤</span><p>Profile</p></a>
+  </nav>
+
+  <img src="hedgehog.png" id="hedgehog-celebration" style="position:fixed; bottom:-200px; left:50%; transform:translateX(-50%); width:150px; transition:bottom 0.8s ease; z-index:1001;" alt="Igel" />
+
+<script defer src="script.js"></script>
+  <script>
+    function checkImage5(answer, img) {
+      const correct = "romanisch";
+      const images = document.querySelectorAll(".image-options .quiz-image");
+      images.forEach(i => i.onclick = null);
+      if (answer === correct) {
+        img.classList.add("button-green-img");
+        awardXP?.(10);
+      } else {
+        img.classList.add("button-red-img");
+        images.forEach(i => { if (i.alt.includes("Romanische")) i.classList.add("button-green-img"); });
+        loseLife?.();
+      }
+      const nextBtn = document.getElementById("nextQuestionBtn");
+      if (nextBtn) nextBtn.disabled = false;
+    }
+  </script>
+</body>
+</html>
