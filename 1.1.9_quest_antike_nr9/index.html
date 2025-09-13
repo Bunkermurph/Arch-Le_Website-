@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="de" data-correct-answer="richtig">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Architektur Quiz – Antike (Frage 9)</title>
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body data-correct-answer="richtig">
+  <div class="container" id="quiz-screen">
+    <h1>ANTIKE</h1>
+
+    <div id="xp-level-display">Level: 1 | XP: 0 / 100</div>
+    <div id="xp-progress-container"><div id="xp-progress-bar"></div></div>
+    <div id="life-container"></div>
+    <div id="xp-feedback">+10 XP!</div>
+
+    <p class="question">Die <b>Basilika</b> ist ursprünglich ein antiker Bautyp für Märkte und Gerichtshallen.</p>
+
+    <div class="options" style="display:flex; gap:10px; justify-content:center;">
+      <button onclick="checkAnswer('richtig', this)">Richtig</button>
+      <button onclick="checkAnswer('falsch', this)">Falsch</button>
+    </div>
+
+    <button id="nextQuestionBtn" type="button" disabled>Next Random Question</button>
+  </div>
+
+  <nav class="bottom-nav">
+    <a href="../0_Homepage_Basic/index.html" class="nav-item"><span>🏠</span><p>Home</p></a>
+    <a href="../1_Topics_Page/index.html" class="nav-item"><span>📚</span><p>Learn</p></a>
+    <a href="#" class="nav-item active"><span>📝</span><p>Quiz</p></a>
+    <a href="#" class="nav-item"><span>👤</span><p>Profile</p></a>
+  </nav>
+
+  <img src="hedgehog.png" id="hedgehog-celebration" alt="Igel" />
+
+  <script defer src="script.js"></script>
+</body>
+</html>
